@@ -1,0 +1,1 @@
+export const draggableBox: string;
