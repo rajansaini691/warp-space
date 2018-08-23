@@ -2,7 +2,11 @@ import * as React from "react"
 
 import * as Styles from './GStyle.css'
 
-export class Graph extends React.Component {
+export interface GraphProps {
+    width: number;
+}
+
+export class Graph extends React.Component<GraphProps> {
 
     /**
      * Allows the canvas to be referenced by other components
@@ -30,9 +34,12 @@ export class Graph extends React.Component {
      */
     axisColor = 'white'
 
-    // TODO: Create interface for props for stricter type-checking
-    constructor(props: any){
+    constructor(props: GraphProps){
         super(props);
+
+        this.state = {
+
+        }
 
         // Allows the canvas to be directly accessed
         this.ref = React.createRef();
@@ -54,6 +61,16 @@ export class Graph extends React.Component {
         this.t = Date.now();
         window.requestAnimationFrame(() => {this.update(this.t, ctx)});
 
+    }
+
+    componentDidUpdate() {
+        // Holds a DOM reference to the canvas element
+        const canvas = this.ref.current;
+        const ctx = canvas.getContext("2d");
+
+        // Resize drawing area to equal size of canvas element
+        ctx.canvas.width = canvas.offsetWidth;
+        ctx.canvas.height = canvas.offsetHeight;
     }
     
     /**
@@ -236,8 +253,8 @@ export class Graph extends React.Component {
 
     render() {
         return(
-            <div className = {Styles.container}>
-                <canvas ref = {this.ref} className={Styles.graph}> </canvas>
+            <div className = {Styles.container} style = {{width: this.props.width}}>
+                <canvas ref = {this.ref} className={Styles.graph} > </canvas>
             </div>);
     }
 }

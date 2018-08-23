@@ -5,7 +5,7 @@ import { DraggableBox } from "../DraggableBox/DraggableBox";
 import { DraggableData } from "react-draggable";
 
 export interface BoxesSectionProps {
-
+    width: number;
 }
 
 /**
@@ -52,7 +52,10 @@ export class BoxesSection extends React.Component<BoxesSectionProps> {
 
     render() {
         return (
-            <div className={styles.boxesSection} ref = {boxSection => {this.boxSection = boxSection}}>
+            <div className={styles.boxesSection} 
+                ref = {boxSection => {this.boxSection = boxSection}}
+                style = {{width: this.props.width}}
+            >
                 <DraggableBox top = {100} left = {100} resolveFinalPosition={this.canRemain} id={1}/>
                 <DraggableBox top = {300} left = {100} resolveFinalPosition={this.canRemain} id={2}/>
             </div>);
