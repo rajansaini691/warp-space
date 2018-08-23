@@ -4,6 +4,7 @@ import * as Styles from './GStyle.css'
 
 export interface GraphProps {
     width: number;
+    height: number;
 }
 
 export class Graph extends React.Component<GraphProps> {
@@ -253,7 +254,7 @@ export class Graph extends React.Component<GraphProps> {
 
     render() {
         return(
-            <div className = {Styles.container} style = {{width: this.props.width}}>
+            <div className = {Styles.container} style = {{width: this.props.width, height: this.props.height}}>
                 <canvas ref = {this.ref} className={Styles.graph} > </canvas>
             </div>);
     }

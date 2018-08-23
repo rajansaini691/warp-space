@@ -1,14 +1,25 @@
 import * as React from "react";
 
-export class Chain extends React.Component {
+import * as Styles from "./CStyle.css"
 
-    //TODO: Give an interface to the prop types
-    constructor(props: any){
+export interface ChainProps {
+    width: number;
+    height: number;
+}
+
+/**
+ * Stores the chain of transformations, an animate button
+ * to animate the final transformation, and a final result matrix
+ * representing what is animated
+ */
+export class Chain extends React.Component<ChainProps> {
+
+    constructor(props: ChainProps){
         super(props)
     }
 
     render() {
-        return (<div> </div>)
+        return (<div style = {{height: this.props.height, width: this.props.width}} className = {Styles.chain}> </div>)
     }
 
 }
