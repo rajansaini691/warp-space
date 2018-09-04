@@ -18,9 +18,9 @@ export class App extends React.Component<AppProps> {
         
         // Initializes data object so the compiler doesn't complain
         this.data = {
-            matrix: [[0, 0], [0, 0]]
+            matrix: null
         }
-        
+
         this.state = {
             width: 0, 
             height: 0,

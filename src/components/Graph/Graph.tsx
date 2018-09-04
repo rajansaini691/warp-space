@@ -213,10 +213,13 @@ export class Graph extends React.Component<GraphProps> {
 
         let transform: number[][] = this.props.data.matrix;
         
-        // Test a full-length animation
-        for(let i = -8; i <= 8; i++)
-            for(let j = -8; j <= 8; j++) 
-                this.animateDot(ctx, transform, Date.now() - this.t, 3000, i, j);
+        if(transform != null) {
+            // Test a full-length animation, as long as there exists a legitimate transformation
+            for(let i = -10; i <= 10; i++)
+                for(let j = -10; j <= 10; j++) 
+                    this.animateDot(ctx, transform, Date.now() - this.t, 3000, i, j);
+
+        }
 
         // Loop again
         window.requestAnimationFrame(() => {this.update(this.t, ctx)});

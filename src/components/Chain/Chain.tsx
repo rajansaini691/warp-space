@@ -25,7 +25,8 @@ export class Chain extends React.Component<ChainProps> {
         this.warpSpace = this.warpSpace.bind(this);
 
         this.data = {
-            matrix: [[1, 0], [1, 0]]
+            matrix: [[0, 1], 
+                     [-1, 0]]
         }
     }
 
