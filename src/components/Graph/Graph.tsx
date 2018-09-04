@@ -2,9 +2,14 @@ import * as React from "react"
 
 import * as Styles from './GStyle.css'
 
+export interface GraphData {
+    matrix: [[number, number], [number, number]]
+}
+
 export interface GraphProps {
     width: number;
     height: number;
+    data: GraphData
 }
 
 export class Graph extends React.Component<GraphProps> {
@@ -16,7 +21,7 @@ export class Graph extends React.Component<GraphProps> {
 
     // TODO: Document this better
     /**
-     * Time, so that all animations are done based on a current time
+     * The local time at the beginning of the animation
      */
     t: number;
 
@@ -35,15 +40,19 @@ export class Graph extends React.Component<GraphProps> {
      */
     axisColor = 'white'
 
+    state: any;
+
     constructor(props: GraphProps){
         super(props);
 
         this.state = {
-
+            data: this.props.data
         }
 
         // Allows the canvas to be directly accessed
         this.ref = React.createRef();
+
+        this.update = this.update.bind(this);
     }
 
     /**
@@ -72,6 +81,11 @@ export class Graph extends React.Component<GraphProps> {
         // Resize drawing area to equal size of canvas element
         ctx.canvas.width = canvas.offsetWidth;
         ctx.canvas.height = canvas.offsetHeight;
+
+        // Update t so that the animations can start over
+        this.t = Date.now();
+
+        console.log("Current time is: " + this.t);
     }
     
     /**
@@ -197,8 +211,7 @@ export class Graph extends React.Component<GraphProps> {
         // Draw the graph
         this.drawGraph(ctx);
 
-        let transform: number[][] = [[0, 1], 
-                                     [-1, 0]];
+        let transform: number[][] = this.props.data.matrix;
         
         // Test a full-length animation
         for(let i = -8; i <= 8; i++)
@@ -224,6 +237,17 @@ export class Graph extends React.Component<GraphProps> {
 
         return [xp, yp];
         
+    }
+
+    componentWillReceiveProps(nextProps: GraphProps) {
+        
+        console.log(nextProps.data.matrix);
+        
+        // Check if the matrix is getting updated
+        if(this.props.data.matrix != nextProps.data.matrix) {
+            // Reset the animation time to the current one, thus resetting the animation
+            this.t = Date.now();
+        }
     }
 
     // TODO: Make this accept a generic animation function instead of the current one
