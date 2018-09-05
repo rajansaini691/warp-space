@@ -1,30 +1,38 @@
 .dElement {
+    /* Positioning */
     position: relative;
-    top: -14vh;
+    top: -10vh;
     left: 50%;
     transform: translate(-50%, 0);
     height: 5vh;
     margin-bottom: 1vh;
     width: 100%;
 
+    /* Positioning of text */
     display: flex;
     align-items: center;
     justify-content: center;
     
+    /* Border */ 
     border: solid black;
 
+    /* Fonts */
     font-size: 2.5vh;
     font-family: "Advent Pro";
     border-radius: 0.75vh;
+    user-select: none;
 
-    transition: opacity 0.75s linear 0s, visibility 0s linear 0.75s;
+    /* Animations */
+    transition: opacity 0.25s linear 0s, visibility 0s linear 0.25s, top 0.25s linear;
     visibility: hidden;
     opacity: 0;
 }
 
 .dElement.visible {
     transition-delay: 0s;
+    
     opacity: 1;
+    top: -14vh;
     visibility: visible;
 }
 
