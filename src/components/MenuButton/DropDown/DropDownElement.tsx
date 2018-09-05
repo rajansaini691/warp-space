@@ -1,6 +1,5 @@
 import * as React from "react"
 import { dElement, visible } from "./DElementStyles.css";
-import { VisibilityProperty } from "../../../../node_modules/csstype";
 
 export interface DropDownElementProps {
     /**
