@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Styles from "./CStyle.css"
 import { WarpSpace } from "../WarpSpace/WarpSpace";
 import { GraphData } from "../Graph/Graph";
+import { MenuButton } from "../MenuButton/MenuButton";
 
 export interface ChainProps {
     width: number;
@@ -38,6 +39,7 @@ export class Chain extends React.Component<ChainProps> {
         return (
             <div style = {{height: this.props.height, width: this.props.width}} className = {Styles.chain}>
                 <WarpSpace height = {this.props.height / 2} onClick = {this.warpSpace}/>
+                <MenuButton height = {this.props.height / 2}/>
             </div>
         )
     }

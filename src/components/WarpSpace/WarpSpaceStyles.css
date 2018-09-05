@@ -6,13 +6,16 @@
     text-align: center;
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 3vh;
     font-family: "Advent Pro";
-    background: black
+    background: black;
+    border-radius: 10px;
+    border: solid white
 }
 
 .warpButton:hover {
     color: black;
     background: white;
-    cursor: pointer
+    cursor: pointer;
+    border: solid black
 }
