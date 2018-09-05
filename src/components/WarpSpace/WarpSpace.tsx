@@ -8,6 +8,10 @@ export interface WarpProps {
     onClick: (e: React.MouseEvent<HTMLDivElement>) => void
 }
 
+/**
+ * The WarpSpace button triggers an animation when clicked using the new updated data from
+ * the transformation chain
+ */
 export class WarpSpace extends React.Component<WarpProps> {
     state: any;
 

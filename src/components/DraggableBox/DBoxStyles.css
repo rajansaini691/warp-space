@@ -1,7 +1,0 @@
-.draggableBox {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    background: green;
-    z-index: 10;
-}
