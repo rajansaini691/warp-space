@@ -5,6 +5,7 @@ import { WarpSpace } from "../WarpSpace/WarpSpace";
 import { GraphData } from "../Graph/Graph";
 import { MenuButton } from "../MenuButton/MenuButton";
 import { Matrix } from "../Matrix/Matrix";
+import { matrix } from "../Matrix/MatrixStyles.css";
 
 export interface ChainProps {
     width: number;
@@ -45,10 +46,23 @@ export class Chain extends React.Component<ChainProps> {
         this.state = {
             chain: [chainTypes.matrix]
         }
+
+        this.addElementToChain = this.addElementToChain.bind(this);
     }
 
     warpSpace(e: React.MouseEvent<HTMLDivElement>) {
         this.props.onWarp(e, this.data);
+    }
+
+    /**
+     * Adds an element to the chain, depending on the type
+     */
+    addElementToChain(type: string) {
+        console.log("Added a new " + type);
+        
+        this.setState((prevState: ChainState) => ({
+            chain: [...prevState.chain, chainTypes.matrix]
+        }));
     }
 
     render() {
@@ -56,15 +70,15 @@ export class Chain extends React.Component<ChainProps> {
         let chain: JSX.Element[] = [];
 
         for(let i = 0; i < this.state.chain.length; i++) {
-            chain.push(<Matrix height = {this.props.height / 2} key = {1} />)
+            chain.push(<Matrix height = {this.props.height / 2} key = {i} />)
         }
 
-        console.log("render");
+        console.log("The length is " + this.state.chain.length);
 
         return (
             <div style = {{height: this.props.height, width: this.props.width}} className = {Styles.chain}>
                 <WarpSpace height = {this.props.height / 2} onClick = {this.warpSpace}/>
-                <MenuButton height = {this.props.height / 2}/>
+                <MenuButton onDropdownClick = {this.addElementToChain} height = {this.props.height / 2}/>
                 {chain}
             </div>
         )

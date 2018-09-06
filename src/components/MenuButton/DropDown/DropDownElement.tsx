@@ -16,6 +16,12 @@ export interface DropDownElementProps {
      * Determines whether the DropDownElement should be visible or not
      */
     visible: boolean;
+
+    /**
+     * Click behaviors to be handled by parent
+     * @param type The content of the DropDownElement
+     */
+    onClick: (type: string) => void;
 }
 
 /**
@@ -26,6 +32,8 @@ export class DropDownElement extends React.Component<DropDownElementProps> {
 
     constructor(props: DropDownElementProps) {
         super(props);
+
+        this.onClick = this.onClick.bind(this);
     }
     
     /**
@@ -34,6 +42,8 @@ export class DropDownElement extends React.Component<DropDownElementProps> {
      */
     onClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
+
+        this.props.onClick(this.props.content);
     }
     
     render() {
