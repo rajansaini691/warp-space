@@ -53,19 +53,15 @@ export class Graph extends React.Component<GraphProps> {
         this.ref = React.createRef();
 
         this.update = this.update.bind(this);
+        this.resize = this.resize.bind(this);
     }
 
     /**
      * Called once the canvas is rendered
      */
     componentDidMount() {
-        // Holds a DOM reference to the canvas element
-        const canvas = this.ref.current;
-        const ctx = canvas.getContext("2d");
-
-        // Resize drawing area to equal size of canvas element
-        ctx.canvas.width = canvas.offsetWidth;
-        ctx.canvas.height = canvas.offsetHeight;
+        // Initially resizes the drawing area and stores the context from it
+        const ctx = this.resize();
 
         let tf = 60;
         this.t = Date.now();
@@ -73,19 +69,31 @@ export class Graph extends React.Component<GraphProps> {
 
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps: GraphProps) {
+        // Check to make sure that the canvas changed size before resizing the window
+        if(prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
+            this.resize();
+        }
+        
+        // Update t so that the animations can start over
+        this.t = Date.now();
+
+    }
+
+    /**
+     * Resizes the graph to fit the current window size
+     * @returns The graph's 2D rendering context
+     */
+    resize(): CanvasRenderingContext2D {
         // Holds a DOM reference to the canvas element
         const canvas = this.ref.current;
         const ctx = canvas.getContext("2d");
 
-        // Resize drawing area to equal size of canvas element
+        // Resize drawing area to size of canvas element
         ctx.canvas.width = canvas.offsetWidth;
         ctx.canvas.height = canvas.offsetHeight;
 
-        // Update t so that the animations can start over
-        this.t = Date.now();
-
-        console.log("Current time is: " + this.t);
+        return ctx;
     }
     
     /**
@@ -127,12 +135,12 @@ export class Graph extends React.Component<GraphProps> {
             ctx.fillStyle = "gray";
             
             if(i != 0) {
-                // White outline
+                // Outline to prevent gridline interference
                 ctx.strokeStyle = this.backgroundColor;
                 ctx.lineWidth = 6;
                 ctx.strokeText(" " + i, 10 * width / 21, height / 2 - location + 5);
                 ctx.strokeText("" + -i, 10 * width / 21, height / 2 + location + 5);
-
+                
                 // Text
                 ctx.fillStyle = "gray";
                 ctx.fillText(" " + i, 10 * width / 21, height / 2 - location + 5);
