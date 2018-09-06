@@ -1,8 +1,10 @@
 .MButton {
-    right: 25%;
-    bottom: 25%;
+    float: right;
+    position: relative;
+    top: 25%;
+    margin-right: 7%;
+
     border: solid rgb(155, 117, 90);
-    position: absolute;
     border-radius: 10px;
     border-style: dotted;
     background-color: rgb(221, 184, 124);

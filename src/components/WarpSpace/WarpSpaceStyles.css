@@ -1,7 +1,9 @@
 .warpButton {
-    bottom: 25%;
-    right: 10%;
-    position: absolute;
+    float: right;
+    position: relative;
+    top: 25%;
+    margin-right: 10%;
+
     color: white;
     text-align: center;
     display: flex;
