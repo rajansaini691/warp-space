@@ -18,6 +18,7 @@ export interface ChainProps {
  */
 enum chainTypes {"matrix", "vector"}
 
+// TEST COmment
 interface ChainState {
     // Chain of Strings
     chain: chainTypes[];
