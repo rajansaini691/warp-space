@@ -223,8 +223,8 @@ export class Graph extends React.Component<GraphProps> {
         
         if(transform != null) {
             // Test a full-length animation, as long as there exists a legitimate transformation
-            for(let i = -10; i <= 10; i++)
-                for(let j = -10; j <= 10; j++) 
+            for(let i = -30; i <= 30; i++)
+                for(let j = -30; j <= 30; j++) 
                     this.animateDot(ctx, transform, Date.now() - this.t, 3000, i, j);
 
         }
@@ -280,7 +280,13 @@ export class Graph extends React.Component<GraphProps> {
         }
 
         let finalSpot = this.convertCoords(ctx, x, y);
+		
+		// Only draw dot if on the screen
+		if(finalSpot[0] < 0 || finalSpot[1] < 0 || finalSpot[0] > ctx.canvas.width || finalSpot[1] > ctx.canvas.height) {
+			return;
+		}
 
+		// Draw dot
         ctx.beginPath();
         ctx.arc(finalSpot[0], finalSpot[1], 2, 0, Math.PI * 2);
         ctx.fill();
