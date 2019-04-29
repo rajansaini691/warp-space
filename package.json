@@ -5,9 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "webpack-dev-server --entry ./src/index.tsx --output-filename ./dist/bundle.js",
-	"build": "webpack-cli --entry ./src/index.tsx --output-filename ./dist/bundle.js",
-	"start": "node server.js",
-	"heroku-postbuild": "webpack-cli -p"
+    "build": "webpack-cli --entry ./src/index.tsx --output-filename ./dist/bundle.js",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack-cli -p"
   },
   "author": "Rajan Saini",
   "license": "ISC",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
+    "express": "^4.16.4",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-draggable": "^3.0.5",
