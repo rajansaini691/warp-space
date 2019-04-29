@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "webpack-dev-server --entry ./src/index.tsx --output-filename ./dist/bundle.js",
-	"start:build": "webpack-cli --entry ./src/index.tsx --output-filename ./dist/bundle.js"
+	"build": "webpack-cli --entry ./src/index.tsx --output-filename ./dist/bundle.js",
+	"start": "node server.js",
+	"heroku-postbuild": "webpack-cli -p"
   },
   "author": "Rajan Saini",
   "license": "ISC",
